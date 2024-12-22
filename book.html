@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>books</title>
+    <link rel="icon" type="image/png" href="images\favicon.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="notificationContainer" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 space-y-4 z-50"></div>
+
+    <div class="main-image-section">
+        <h1>Google Books</h1>
+        <div class="search-section">
+            <input type="text" id="query" placeholder="Search for books...">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filter-section">
+            <button onclick="fetchBestsellers()">Bestsellers</button>
+            <button onclick="fetchNewReleases()" >New Releases</button>
+            <div>
+                <select id="genreSelect">
+                    <option value="">Select a genre</option>
+                </select>
+                <button class="genre-button" onclick="fetchTopBooksByGenre()">Top Books by Genre</button>
+            </div>
+        </div>
+
+        <div id="categoryTitle" class="category-title"></div>
+        <div id="results"></div>
+    </div>
+
+    <div id="bookModal" class="fixed inset-0 hidden bg-gray-900 bg-opacity-75 flex justify-center items-center z-50">
+        <div class="modal-content bg-black text-white rounded p-6 max-w-lg w-full">
+            <button id="closeModal">x</button>
+            <h2 id="modalBookTitle" class="text-2xl font-bold mb-4"></h2>
+            <div id="modalBookInfo">
+                <p id="modalBookDescription"></p>
+                <div id="modalBookAuthors"></div>
+                <div id="modalBookCategories"></div>
+                <div id="modalBookRating"></div>
+                <div id="modalBookPublishedDate"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
