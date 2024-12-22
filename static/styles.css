@@ -13,7 +13,7 @@ body {
     position: relative;
     width: 100%;
     height: 60vh;
-    background-image: url('images/background.png');
+    background-image: url('../static/images/background.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -96,9 +96,25 @@ body {
     height: 7em;
 }
 
+#results {
+    padding-top: 2em;
+    padding-bottom: 3em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.book-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+}
+
 .book-card {
     display: flex; 
-    flex-direction: row; 
+    flex-direction: row;
     align-items: flex-start;
     background-color: #000000;
     border: 1px solid #000000;
@@ -108,7 +124,8 @@ body {
     transition: transform 0.3s ease;
     gap: 15px;
     height: auto;
-    margin-top: 1em;  
+    margin-top: 1em;
+    cursor: pointer;
 }
 
 .book-card:hover {
@@ -118,10 +135,13 @@ body {
 .book-card .book-image img {
     width: 120px; 
     height: 180px;
-    margin-top: -2em; 
     object-fit: cover;
     border-radius: 5px;
-    margin-right: 15px; 
+    margin-right: 15px;
+}
+
+.book-image {
+    margin-top: -2em;
 }
 
 .book-card .book-info {
@@ -147,15 +167,6 @@ body {
     border-radius: 5px;
     padding: 3px 8px;
     color: white;
-}
-
-#results {
-    padding-top: 2em;
-    padding-bottom: 3em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
 }
 
 .category-title {
@@ -251,9 +262,15 @@ body {
     font-weight: bold;
 }
 
-@media (max-width: 768px) {
-    .grid-cols-4 {
+@media (max-width: 1024px) {
+    .book-grid-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .book-grid-container {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 

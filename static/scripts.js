@@ -78,13 +78,13 @@ function displayResults(data) {
     const booksToShow = data.books.slice(0, maxBooks);
 
     const gridContainer = document.createElement('div');
-    gridContainer.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
+    gridContainer.className = 'book-grid-container';
 
     booksToShow.forEach(book => {
         const bookCard = document.createElement('div');
-        bookCard.className = 'book-card flex flex-col'; 
+        bookCard.className = 'book-card';
 
-        const imageUrl = book.thumbnail || 'images/placeholder_img.jpg';
+        const imageUrl = book.thumbnail || '../static/images/placeholder_img.jpg';
         const genres = book.categories ? book.categories.join(', ') : 'Uncategorized';
 
         bookCard.innerHTML = `
@@ -101,7 +101,6 @@ function displayResults(data) {
         `;
         gridContainer.appendChild(bookCard);
 
-        // Add click event to open the popup
         bookCard.addEventListener('click', function() {
             openBookPopup(book);
         });
@@ -114,7 +113,7 @@ function openBookPopup(book) {
     const popup = document.createElement('div');
     popup.className = 'book-popup';
 
-    const imageUrl = book.thumbnail || 'images/placeholder_img.jpg';
+    const imageUrl = book.thumbnail || '../static/images/placeholder_img.jpg';
     const genres = book.categories ? book.categories.join(', ') : 'Uncategorized';
     const description = book.description || 'No description available.';
     const rating = book.averageRating || 'No rating';
@@ -149,8 +148,6 @@ function closePopup() {
         popup.remove();
     }
 }
-
-
 
 function displayNotification({ message }) {
     const notificationContainer = document.getElementById('notificationContainer');

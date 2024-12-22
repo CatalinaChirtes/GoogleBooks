@@ -1,4 +1,4 @@
-from flask import Flask, json, request
+from flask import Flask, json, render_template, request
 from flask_restx import Api, Resource, fields
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
@@ -80,6 +80,11 @@ async def fetch_bestsellers():
 
 # ========== Flask REST API Endpoint ==========
 
+@app.route('/book')
+def home():
+    return render_template('book.html')
+
+
 @ns.route('/search')
 class BookSearch(Resource):
     @ns.expect(book_model)
@@ -107,11 +112,6 @@ class AvailableGenres(Resource):
                 return json.dumps(books_info), 500
 
         return json.dumps({'genres': sorted(genres)})
-
-
-@app.route('/')
-def home():
-    return "Welcome to the Book Search API!"
 
 
 # ========== SocketIO Handlers ==========
