@@ -1,5 +1,5 @@
-// const socket = io('https://booksapp-bjd0aqbra7bcbyh0.polandcentral-01.azurewebsites.net');
-const socket = io('http://127.0.0.1:5000');
+const socket = io('https://books-app-yp3d.onrender.com');
+// const socket = io('http://127.0.0.1:5000');
 
 socket.on('message', function(data) {
     console.log(data);
