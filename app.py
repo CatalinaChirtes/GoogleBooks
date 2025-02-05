@@ -184,4 +184,5 @@ def handle_available_genres():
 api.add_namespace(ns, path='/api')
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    port = int(os.getenv('PORT', 5000))
+    socketio.run(app, host='0.0.0.0', port=port, debug=True)
