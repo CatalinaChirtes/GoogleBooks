@@ -91,7 +91,7 @@ class BookSearch(Resource):
     def post(self):
         data = request.get_json()
         query = data['query']
-        url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={GOOGLE_API_KEY}"
+        url = f"https://www.googleapis.com/books/v1/volumes?q={query}&langRestrict=en&key={GOOGLE_API_KEY}"
         books_info = asyncio.run(fetch_books(url))
         return json.dumps(books_info)
 
@@ -139,7 +139,7 @@ def handle_disconnect():
 @socketio.on('book_query')
 def handle_book_query(data):
     query = data['query']
-    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&key={GOOGLE_API_KEY}"
+    url = f"https://www.googleapis.com/books/v1/volumes?q={query}&langRestrict=en&key={GOOGLE_API_KEY}"
     books_info = asyncio.run(fetch_books(url))
     emit('book_results', {'books': books_info})
 
@@ -186,3 +186,4 @@ api.add_namespace(ns, path='/api')
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     socketio.run(app, host='0.0.0.0', port=port, debug=True)
+    # socketio.run(app, debug=True)
